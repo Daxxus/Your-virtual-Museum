@@ -5,7 +5,7 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage:{
-        'rijksMusem' : "url('https://pixabay.com/get/g7df419c2b22640e7a0b2b26010bb4e970eb1d0fe370e48e60bbdb927b572dcbe74f4d31889cc87ce4f00dc92e5cd27a9795a7418c77119bf4f3add8722d4a4fc_1920.jpg')"   
+        'rijksMusem' : "url('https://www.rijksmuseum.nl/assets/12489e0c-62ac-4d5b-83cb-f42474dd7099?w=2048&h=1539&fx=1506&fy=930&format=webp&c=9e537182184e5649ed86d3aa5d1836a9f9ea711196d436fc4d81d4507b617901')"   
       },
       width: {
         "1p": "1%",

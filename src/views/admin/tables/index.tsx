@@ -9,12 +9,14 @@
 import { useGetRijksAPIByNameQuery } from "../../../redux/apis/RijksMuseumAPI";
 // import { useGetHarvardApiTypeQuery } from "../../../redux/apis/HarvardMuseumApi";
 import Loader from "components/loader/Loader";
-// import BG from "./Images/amsterdam-2014855_1920.jpg"
+// import { Select, Option } from '@mui/joy';
+import RijksCard from "./components/RijksCard";
+import MultipleSelectChip from "./components/SelectMulti";
 
-const Tables = () => {
- 
-  const {data:rijksApi, isLoading} = useGetRijksAPIByNameQuery(`Rembrandt+van+Rijn`)
+const Tables = () => { 
+  const {data, isLoading} = useGetRijksAPIByNameQuery(``)
 
+  const rijksApi = undefined ?? data
   console.log(rijksApi)
 
   //  console.log(useGetHarvardApiTypeQuery(`gallery`))
@@ -23,21 +25,20 @@ const Tables = () => {
 if(isLoading)return <Loader/>
   
   return (
-    <div 
-    className="bg-rijksMusem w-screen h-screen bg-fixed sm:bg-local md:bg-scroll lg:bg-local xl:bg-fixed ..."  
-    
-      >      
-      <div className="mt-5 grid h-full grid-cols-1 gap-5 md:grid-cols-2">
-        {/* <DevelopmentTable tableData={tableDataDevelopment} /> */}
-        {/* <CheckTable tableData={tableDataCheck} /> */}
+    <main>
+      <div className="bg-rijksMusem w-full h-screen bg-fixed sm:bg-local md:bg-scroll lg:bg-local xl:bg-fixed ...">   
+        <div className="mt-10" >        
+          <MultipleSelectChip selByName={rijksApi.facets}/>
+        </div>
+     
+      <div className="mt-5 h-full">
+        <RijksCard/>
       </div>
 
-      <div className="mt-5 grid h-full grid-cols-1 gap-5 md:grid-cols-2">
-        {/* <ColumnsTable tableData={tableDataColumns} /> */}
-
-        {/* <ComplexTable tableData={tableDataComplex} /> */}
-      </div>
+      {/* <div className="mt-5 grid h-full grid-cols-1 gap-5 md:grid-cols-2"></div> */}
     </div>
+    </main>
+    
   );
 };
 
