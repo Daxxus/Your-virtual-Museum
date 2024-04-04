@@ -63,15 +63,13 @@ export default function MultipleSelectChip({selByName}: SelectProps) {
   return (
     <div>
       <FormControl sx={{ m: 1, width: 300 }}>
-        <InputLabel id="demo-multiple-chip-label"  color="success">Select the collection</InputLabel>
+        <InputLabel id="demo-multiple-chip-label" color="primary">Select the collection</InputLabel>
         <Select
           labelId="demo-multiple-chip-label"
           id="demo-multiple-chip"
-          className="bg-white"
-          
+          className="bg-white"          
           multiple
-          value={personName}
-          
+          value={personName}          
         //  variant="filled"
           onChange={handleChange}
           input={<OutlinedInput id="select-multiple-chip" label="Chip" />}

@@ -3,6 +3,8 @@ module.exports = {
   darkMode: "class",
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
+    // container: {
+    //   center: true,
     extend: {
       backgroundImage:{
         'rijksMusem' : "url('https://www.rijksmuseum.nl/assets/12489e0c-62ac-4d5b-83cb-f42474dd7099?w=2048&h=1539&fx=1506&fy=930&format=webp&c=9e537182184e5649ed86d3aa5d1836a9f9ea711196d436fc4d81d4507b617901')"   
