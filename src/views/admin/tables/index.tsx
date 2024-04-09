@@ -1,4 +1,4 @@
-import { useGetRijksAPIByNameQuery } from "../../../redux/apis/RijksMuseumAPI";
+import { useGetRijksAPIByNameQuery, useGetRijksAPIByTypeQuery, useGetRijksAPIByMakerQuery, useGetRijksAPIByDatePeriodQuery, useGetRijksAPIByColorQuery, useGetRijksAPIByMaterialQuery, useGetRijksAPIByPlaceQuery, useGetRijksAPIByTechniqueQuery  } from "../../../redux/apis/RijksMuseumAPI";
 // import { useGetHarvardApiTypeQuery } from "../../../redux/apis/HarvardMuseumApi";
 import Loader from "components/loader/Loader";
 import React, { useState } from "react";
@@ -10,8 +10,6 @@ import Stack from '@mui/material/Stack';
 import RijksCard from "./components/RijksCard";
 import MultipleSelectChip from "./components/SelectMulti";
 import Container from '@mui/material/Container';
-import { color } from "@chakra-ui/system";
-import { colors } from "@mui/material";
 interface RijksProps  {
   links:{}
   longTitle:string
@@ -21,14 +19,14 @@ interface RijksProps  {
 }
 
 const Tables = () => { 
-  const {data, isLoading} = useGetRijksAPIByNameQuery(``)
-  const rijksApi = undefined ?? data
-  console.log(rijksApi)
+  const {data, isLoading} = useGetRijksAPIByNameQuery(`rembrandt`)// search
+  const rijksApiSearch = undefined ?? data
+  console.log(rijksApiSearch)
 
   let [page, setPage] = useState(1);
   const PER_PAGE = 4;
-  const _DATA = useRijksPagination(rijksApi?.artObjects, PER_PAGE);
-  const count = Math.ceil(rijksApi?.artObjects.length / PER_PAGE);
+  const _DATA = useRijksPagination(rijksApiSearch?.artObjects, PER_PAGE);
+  const count = Math.ceil(rijksApiSearch?.artObjects.length / PER_PAGE);
 
   const handleChange = (e: React.ChangeEvent<unknown>, pg: number) => {
     setPage(pg);
@@ -45,14 +43,14 @@ if(isLoading)return <Loader/>
      
           <Container maxWidth="sm" >         
               <div className="flex justify-center py-24 " >        
-                <MultipleSelectChip selByName={rijksApi.facets} />
+                <MultipleSelectChip selByName={rijksApiSearch.facets} />
               </div>          
           </Container>
           
           <Stack spacing={2}> 
-              <div className="mt-1 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 ">
-                {_DATA.currentData().map(({links, longTitle, productionPlaces, principalOrFirstMaker, webImage}:RijksProps)=> (
-                  <RijksCard key={longTitle} link={links} title={longTitle} place={productionPlaces} web={webImage} maker={principalOrFirstMaker} />
+              <div className="mt-1 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 ">
+                {_DATA.currentData().map(({links, longTitle, productionPlaces, principalOrFirstMaker, webImage}:RijksProps, i)=> (
+                  <RijksCard key={i} link={links} title={longTitle} place={productionPlaces} web={webImage} maker={principalOrFirstMaker} />
                 ) )}        
               </div> 
 

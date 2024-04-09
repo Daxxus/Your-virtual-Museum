@@ -6,9 +6,10 @@ export default function MultipleInteractionCard({link, title, place, web, maker}
 
   return (
     // <Card variant="outlined" sx={{ width: 320 }}>
-      <div className="relative flex w-full max-w-[26rem] flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-lg">
-        <div className="relative mx-4 mt-4 overflow-hidden text-white shadow-lg rounded-xl bg-blue-gray-500 bg-clip-border shadow-blue-gray-500/40">
+      <div className="relative flex w-full max-w-[26rem] flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-lg justify-between">
+        <div className="relative mx-2 mt-2  overflow-hidden text-white shadow-lg rounded-xl bg-blue-gray-500 bg-clip-border shadow-blue-gray-500/40" >
         <img
+          // height={`200px`}
           src={web?.url}
           alt="ui/ux review check" />
         <div
