@@ -3,12 +3,12 @@ import { useState } from "react";
 function useRijksPagination(data: [], itemsPerPage: number) {
   // console.log(data)
   const [currentPage, setCurrentPage] = useState(1);
-  const maxPage = Math.ceil(data?.length / itemsPerPage);
+  const maxPage = Math.ceil(Number(data?.length / itemsPerPage));
 
   function currentData() {
     const begin = (currentPage - 1) * itemsPerPage;
     const end = begin + itemsPerPage;
-    return data.slice(begin, end);
+    return data?.slice(begin, end);
   }
 
   function next() {

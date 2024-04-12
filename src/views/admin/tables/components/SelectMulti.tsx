@@ -1,5 +1,6 @@
-import * as React from "react";
+
 import { Theme, useTheme } from "@mui/material/styles";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
@@ -18,20 +19,6 @@ const MenuProps = {
     },
   },
 };
-
-// const names = [
-//   "Oliver Hansen",
-//   "Van Henry",
-//   "April Tucker",
-//   "Ralph Hubbard",
-//   "Omar Alexander",
-//   "Carlos Abbott",
-//   "Miriam Wagner",
-//   "Bradley Wilkerson",
-//   "Virginia Andrews",
-//   "Kelly Snyder",
-// ];
-
 function getStyles(name: string, personName: readonly string[], theme: Theme) {
   return {
     fontWeight:
@@ -41,34 +28,32 @@ function getStyles(name: string, personName: readonly string[], theme: Theme) {
         // backgroundColor: theme.palette.background.paper
   };
 }
+
 interface SelectProps  {
-    selByName: any
-}
+    selectType: any  
+  }
 
-export default function MultipleSelectChip({selByName}: SelectProps) {
-    // console.log(selByName.map((el: { name: string; }) =>el.name))
+export default function MultipleSelectChip({selectType}: SelectProps) {
   const theme = useTheme();
-  const [personName, setPersonName] = React.useState<string[]>([]);
-// console.log(theme)
+  const [personName, setPersonName] = React.useState<string[]>([]);  
+  // console.log(theme)
   const handleChange = (event: SelectChangeEvent<typeof personName>) => {
-    const {
-      target: { value },
-    } = event;
-    setPersonName(
-      // On autofill we get a stringified value.
+    const {target: { value }} = event;
+    setPersonName( // On autofill we get a stringified value.
       typeof value === "string" ? value.split(",") : value
-    );
-  };
-
+    );   
+  }; 
+  
+  const objectByType = selectType?.facets?.filter((el: { name: string; }) => el.name ==="type")
   return (
     <div>
       <FormControl sx={{ m: 1, width: 300 }}>
-        <InputLabel id="demo-multiple-chip-label" color="primary">Select the collection</InputLabel>
+        <InputLabel id="demo-multiple-chip-label" color="primary">Select</InputLabel>
         <Select
           labelId="demo-multiple-chip-label"
           id="demo-multiple-chip"
           className="bg-white"          
-          multiple
+          // multiple
           value={personName}          
         //  variant="filled"
           onChange={handleChange}
@@ -82,15 +67,17 @@ export default function MultipleSelectChip({selByName}: SelectProps) {
           )}
           MenuProps={MenuProps}
         >
-          {selByName.map(({name}:{name:string}) => (
-            <MenuItem           
-              key={name}
-              value={name}
-              style={getStyles(name, personName, theme)}
-            >
-              {name}
-            </MenuItem>
-          ))}
+         {objectByType?.[0]?.facets?.map(({key}:{key:string}) => (
+             <MenuItem           
+             key={key}
+             value={key}
+             style={getStyles(key, personName, theme)}
+           >
+             {key}
+           </MenuItem>
+
+         ))}          
+          
         </Select>
       </FormControl>
     </div>
