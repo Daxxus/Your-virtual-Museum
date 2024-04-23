@@ -4,7 +4,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Loader from "components/loader/Loader";
-import {useGetRijksAPIByPlaceQuery} from "../../../../redux/apis/RijksMuseumAPI";
+import {useGetRijksAPIByMaterialQuery} from "../../../../redux/apis/RijksMuseumAPI";
 import useRijksPagination from "./RijksPagination";
 
   interface TypeSelection {
@@ -14,30 +14,33 @@ import useRijksPagination from "./RijksPagination";
     setData: any      
   }
 
-export default function SelectByPlace({setTypeBoolean, setPg, setCount, setData}:TypeSelection) {
-  const [place, setPlace] = useState(``)
-  const {data:rijksApiPlace, isLoading } = useGetRijksAPIByPlaceQuery(place)
+export default function SelectByMaterial({setTypeBoolean, setPg, setCount, setData}:TypeSelection) {
+  const [material, setMaterial] = useState(``)
+  const {data:rijksApiMaterial, isLoading } = useGetRijksAPIByMaterialQuery(material)
 
-  const objectByType = rijksApiPlace?.facets?.filter((el: { name: string; }) => el.name ==="place"
+  const objectByType = rijksApiMaterial?.facets?.filter((el: { name: string; }) => el.name ==="material"
 )
+
+// const materialAsc = new Set(objectByType)  
+  // console.log(rijksApiMaterial)
  
   const PER_PAGE = 4;
-  const dataSearch = useRijksPagination(rijksApiPlace?.artObjects, PER_PAGE);
-  const count = Math.ceil(rijksApiPlace?.artObjects?.length / PER_PAGE);  
+  const dataSearch = useRijksPagination(rijksApiMaterial?.artObjects, PER_PAGE);
+  const count = Math.ceil(rijksApiMaterial?.artObjects?.length / PER_PAGE);  
 
   const handleChange = (event: { target: { value: SetStateAction<string>}}) => {   
-    setPlace(event.target.value);   
+    setMaterial(event.target.value);   
     setPg(1);  
-    setTypeBoolean(place) 
+    setTypeBoolean(material) 
   }; 
   
-  // console.log(rijksApiPlace)
+  // console.log(rijksApiMaterial)
   
   useEffect(()=>{  
-    setTypeBoolean(place) 
+    setTypeBoolean(material) 
     setCount(count)
     setData(dataSearch)        
-  },[count, dataSearch, setCount, setData, setTypeBoolean, place])  
+  },[count, dataSearch, setCount, setData, setTypeBoolean, material])  
 
   // if(isFetching)return <Loader/> 
   if(isLoading)return <Loader/> 
@@ -45,11 +48,11 @@ export default function SelectByPlace({setTypeBoolean, setPg, setCount, setData}
   return(
     <div className='bg-white m-5 w-48 ' >   
     <FormControl variant="filled" sx={{ m: 1, minWidth: 176 }} >
-        <InputLabel id="demo-simple-select-filled-label" >Select Place </InputLabel>
+        <InputLabel id="demo-simple-select-filled-label" >Select Material </InputLabel>
         <Select
           labelId="demo-simple-select-filled-label"
           id="demo-simple-select-filled"       
-          value={place}
+          value={material}
           onChange={handleChange}
         >
           <MenuItem value="" >

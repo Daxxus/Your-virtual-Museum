@@ -4,7 +4,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Loader from "components/loader/Loader";
-import {useGetRijksAPIByPlaceQuery} from "../../../../redux/apis/RijksMuseumAPI";
+import {useGetRijksAPIByTechniqueQuery} from "../../../../redux/apis/RijksMuseumAPI";
 import useRijksPagination from "./RijksPagination";
 
   interface TypeSelection {
@@ -14,42 +14,39 @@ import useRijksPagination from "./RijksPagination";
     setData: any      
   }
 
-export default function SelectByPlace({setTypeBoolean, setPg, setCount, setData}:TypeSelection) {
-  const [place, setPlace] = useState(``)
-  const {data:rijksApiPlace, isLoading } = useGetRijksAPIByPlaceQuery(place)
+export default function SelectByTechnique({setTypeBoolean, setPg, setCount, setData}:TypeSelection) {
+  const [technique, setTechnique] = useState(``)
+  const {data:rijksApiTechnique, isLoading } = useGetRijksAPIByTechniqueQuery(technique)
 
-  const objectByType = rijksApiPlace?.facets?.filter((el: { name: string; }) => el.name ==="place"
+  const objectByType = rijksApiTechnique?.facets?.filter((el: { name: string; }) => el.name ==="technique"
 )
  
   const PER_PAGE = 4;
-  const dataSearch = useRijksPagination(rijksApiPlace?.artObjects, PER_PAGE);
-  const count = Math.ceil(rijksApiPlace?.artObjects?.length / PER_PAGE);  
+  const dataSearch = useRijksPagination(rijksApiTechnique?.artObjects, PER_PAGE);
+  const count = Math.ceil(rijksApiTechnique?.artObjects?.length / PER_PAGE);  
 
   const handleChange = (event: { target: { value: SetStateAction<string>}}) => {   
-    setPlace(event.target.value);   
+    setTechnique(event.target.value);   
     setPg(1);  
-    setTypeBoolean(place) 
-  }; 
-  
-  // console.log(rijksApiPlace)
+    setTypeBoolean(technique) 
+  };  
   
   useEffect(()=>{  
-    setTypeBoolean(place) 
+    setTypeBoolean(technique) 
     setCount(count)
     setData(dataSearch)        
-  },[count, dataSearch, setCount, setData, setTypeBoolean, place])  
-
-  // if(isFetching)return <Loader/> 
+  },[count, dataSearch, setCount, setData, setTypeBoolean, technique])  
+ 
   if(isLoading)return <Loader/> 
 
   return(
     <div className='bg-white m-5 w-48 ' >   
     <FormControl variant="filled" sx={{ m: 1, minWidth: 176 }} >
-        <InputLabel id="demo-simple-select-filled-label" >Select Place </InputLabel>
+        <InputLabel id="demo-simple-select-filled-label" >Select Technique </InputLabel>
         <Select
           labelId="demo-simple-select-filled-label"
           id="demo-simple-select-filled"       
-          value={place}
+          value={technique}
           onChange={handleChange}
         >
           <MenuItem value="" >
@@ -62,8 +59,7 @@ export default function SelectByPlace({setTypeBoolean, setPg, setCount, setData}
            >
              {key}
            </MenuItem>
-         ))}        
-         
+         ))}            
         </Select>
       </FormControl>       
     </div>

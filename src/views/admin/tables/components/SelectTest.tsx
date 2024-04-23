@@ -43,9 +43,9 @@ export default function SelectTypes({setTypeBoolean, setPg, setCount, setData}:T
   // if (isLoading) return <Loader />;
 
   return(
-      <div className='bg-white'>   
-      <FormControl variant="filled" sx={{ m: 1, minWidth: 150 } }>
-        <InputLabel id="demo-simple-select-filled-label" >Select Type </InputLabel>
+      <div className='bg-white m-5 w-48 ' >   
+      <FormControl variant="filled" sx={{ m: 1, minWidth: 176 }} >
+        <InputLabel id="demo-simple-select-filled-label"  >Select Type </InputLabel>
         <Select
           labelId="demo-simple-select-filled-label"
           id="demo-simple-select-filled"       

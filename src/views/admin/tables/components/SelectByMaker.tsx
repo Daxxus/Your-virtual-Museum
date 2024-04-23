@@ -44,8 +44,8 @@ export default function SelectByMaker({setTypeBoolean, setPg, setCount, setData}
   if(isLoading)return <Loader/> 
 
   return(
-      <div className='bg-white'>        
-      <FormControl variant="filled" sx={{ m: 1, minWidth: 150 } }>
+    <div className='bg-white m-5 w-48 ' >   
+    <FormControl variant="filled" sx={{ m: 1, minWidth: 176 }} >
         <InputLabel id="demo-simple-select-filled-label" >Select Maker </InputLabel>
         <Select
           labelId="demo-simple-select-filled-label"
