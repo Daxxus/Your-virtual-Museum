@@ -72,7 +72,6 @@ const Tables = () => {
     dataMaterial.jump(pg)
     dataTechnique.jump(pg)
     // dataDatePeriod.jump(pg)
-    // dataColor.jump(pg)
     // setCount(Math.ceil(rijksNameSearch?.length / PER_PAGE))    
   };
   
@@ -92,24 +91,15 @@ const Tables = () => {
       <RijksCard key={id} link={links} title={longTitle} place={productionPlaces} web={webImage} maker={principalOrFirstMaker} />))   
 
     // const datePeriod = dataDatePeriod?.currentData()?.map(({links, longTitle, productionPlaces,     principalOrFirstMaker, webImage,id}:RijksProps)=> ( 
-    //   <RijksCard key={id} link={links} title={longTitle} place={productionPlaces} web={webImage} maker={principalOrFirstMaker} />))   
-
-    // const color = dataColor?.currentData()?.map(({links, longTitle, productionPlaces,     principalOrFirstMaker, webImage,id}:RijksProps)=> ( 
-    //   <RijksCard key={id} link={links} title={longTitle} place={productionPlaces} web={webImage} maker={principalOrFirstMaker} />))       
-      
+    //   <RijksCard key={id} link={links} title={longTitle} place={productionPlaces} web={webImage} maker={principalOrFirstMaker} />))        
       
     const selType = selectedType && type
     const selMaker = selectedMaker && maker
     const selPlace = selectedPlace && place
     const selMaterial = selectedMaterial && material
     const selTechnique = selectedTechnique && technique
-    // const selDataPeriod = selectedDatePeriod && datePeriod
-    // const selColor = selectedColor && color
-
-    // console.log(selType, selMaker, selPlace)
-    // if (isLoading) return <Loader />; 
- 
-  // console.log(dataType?.currentData())
+    // const selDataPeriod = selectedDatePeriod && datePeriod     
+  
   return (
     <main>
       <div className="... min-h-screen bg-rijksMusem bg-cover bg-fixed bg-top sm:bg-local md:bg-scroll lg:bg-local xl:bg-fixed">
@@ -128,7 +118,7 @@ const Tables = () => {
             <SelectByTechnique setTypeBoolean={setSelectedTechnique} setPg={setPage} setCount={setCount} setData={setDataTechnique} />       
           </div> 
         </Container>
-          <Stack spacing={2} mx={2} className=""  >
+          <Stack spacing={2} mx={2}>
             <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 ">           
               {selType} {selPlace} {selMaker} {selMaterial} {selTechnique}    
             </div>

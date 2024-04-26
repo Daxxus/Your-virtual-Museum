@@ -1,42 +1,67 @@
-import Banner from "./components/Banner";
-import General from "./components/General";
-import Notification from "./components/Notification";
-import Project from "./components/Project";
-import Storage from "./components/Storage";
-import Upload from "./components/Upload";
+import axios from "axios";
+import Stack from "@mui/material/Stack";
+import useCollection from "./components/useCollection";
+import CollectionCard from "./components/CollectionCard";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+interface CollectionProps {
+  id: any;
+  link: any;
+  title: string;
+  place: string[];
+  web: any;
+  maker: string;
+}
 
-const ProfileOverview = () => {
+const Collection = () => {
+  const { collection } = useCollection();
+
+  const deleteCard = async (id: void) => {
+    const response = await axios.delete(
+      `http://localhost:3000/collections/${id}`
+    );
+    const { data: order } = response;
+    return order;
+  };
+
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation({
+    mutationFn: async (id) => {
+      return await deleteCard(id);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["collections"] });
+    },
+    onError: () => {
+      console.log("Error !!!!!");
+    },
+  });
+
+  const handleDelete = (id: any) => {
+    mutation.mutate(id);
+  };
+
   return (
-    <div className="flex w-full flex-col gap-5">
-      <div className="w-ful mt-3 flex h-fit flex-col gap-5 lg:grid lg:grid-cols-12">
-        <div className="col-span-4 lg:!mb-0">
-          <Banner />
-        </div>
-
-        <div className="col-span-3 lg:!mb-0">
-          <Storage />
-        </div>
-
-        <div className="z-0 col-span-5 lg:!mb-0">
-          <Upload />
-        </div>
+    <Stack mt={1}>
+      <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 ">
+        {collection?.map(
+          ({ id, link, title, place, web, maker }: CollectionProps) => {
+            return (
+              <CollectionCard
+                link={link}
+                title={title}
+                place={place}
+                web={web}
+                maker={maker}
+                key={id}
+                deleteCard={() => handleDelete(id)}
+              />
+            );
+          }
+        )}
       </div>
-      {/* all project & ... */}
-
-      <div className="grid h-full grid-cols-1 gap-5 lg:!grid-cols-12">
-        <div className="col-span-5 lg:col-span-6 lg:mb-0 3xl:col-span-4">
-          <Project />
-        </div>
-        <div className="col-span-5 lg:col-span-6 lg:mb-0 3xl:col-span-5">
-          <General />
-        </div>
-
-        <div className="col-span-5 lg:col-span-12 lg:mb-0 3xl:!col-span-3">
-          <Notification />
-        </div>
-      </div>
-    </div>
+    </Stack>
   );
 };
 
-export default ProfileOverview;
+export default Collection;

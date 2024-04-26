@@ -3,7 +3,8 @@ import React from "react";
 // Admin Imports
 import MainDashboard from "views/admin/default";
 import NFTMarketplace from "views/admin/marketplace";
-import Profile from "views/admin/profile";
+// import Profile from "views/admin/profile";
+import Collection from "views/admin/profile";
 import DataTables from "views/admin/tables";
 // import RTLDefault from "views/rtl/default";
 
@@ -11,7 +12,7 @@ import DataTables from "views/admin/tables";
 import SignIn from "views/auth/SignIn";
 
 // Icon Imports
-import {MdHome,MdOutlineShoppingCart,MdMuseum,MdPerson,MdLock} from "react-icons/md";
+import {MdHome,MdOutlineMuseum ,MdMuseum,MdLock, MdOutlineCollections } from "react-icons/md";
 
 const routes = [
   {
@@ -22,10 +23,10 @@ const routes = [
     component: <MainDashboard />,
   },
   {
-    name: "NFT Marketplace",
+    name: "Harvard Museum",
     layout: "/admin",
     path: "nft-marketplace",
-    icon: <MdOutlineShoppingCart className="h-6 w-6" />,
+    icon: <MdOutlineMuseum  className="h-6 w-6" />,
     component: <NFTMarketplace />,
     secondary: true,
   },
@@ -37,11 +38,11 @@ const routes = [
     component: <DataTables />,
   },
   {
-    name: "Profile",
+    name: "Collection",
     layout: "/admin",
     path: "profile",
-    icon: <MdPerson className="h-6 w-6" />,
-    component: <Profile />,
+    icon: <MdOutlineCollections  className="h-6 w-6" />,
+    component: <Collection />,
   },
   {
     name: "Sign In",

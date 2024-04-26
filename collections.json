@@ -1,0 +1,51 @@
+{
+  "collections": [
+    {
+      "id": "f70d",
+      "web": "https://lh3.ggpht.com/pHy3RaY0F1-UJ6gMpRwafWU7rT0D-NC3T8YXw6jPougjpcZqlKCxyJUqpvKojNPX2iMzYu-YlZ9WcI-hLmCA70FzFzH7=s0",
+      "link": "http://www.rijksmuseum.nl/en/collection/RP-T-1948-397",
+      "title": "Moonlit River Landscape with Fishermen, Hendrick Avercamp, c. 1625",
+      "place": [],
+      "maker": "Hendrick Avercamp"
+    },
+    {
+      "id": "227a",
+      "web": "https://lh3.googleusercontent.com/gShVRyvLLbwVB8jeIPghCXgr96wxTHaM4zqfmxIWRsUpMhMn38PwuUU13o1mXQzLMt5HFqX761u8Tgo4L_JG1XLATvw=s0",
+      "link": "http://www.rijksmuseum.nl/en/collection/SK-C-6",
+      "title": "The Sampling Officials of the Amsterdam Drapers’ Guild, Known as ‘The Syndics’, Rembrandt van Rijn, 1662",
+      "place": [],
+      "maker": "Rembrandt van Rijn"
+    },
+    {
+      "id": "62a9",
+      "web": "https://lh3.googleusercontent.com/hDN8_JS4BbbksBXkxIDUldJvooejHBfQjgD3b_Jr73HjVOAs8thpnvCJA3WUtQFxlbjx-QB1-IyqhgEiM4dFLFk1Sg=s0",
+      "link": "http://www.rijksmuseum.nl/en/collection/SK-A-5033",
+      "title": "Marten Soolmans, Rembrandt van Rijn, 1634",
+      "place": [
+        "Amsterdam"
+      ],
+      "maker": "Rembrandt van Rijn"
+    },
+    {
+      "id": "37f5",
+      "web": "https://lh5.ggpht.com/xsp3XhQMxPi-eR9q6_Th3MIEK0tKHnPK-7xfVNw5X0xL_n2rhHdmBYB2wQGOLk0Qwt5JnrIrw-Dj_65c-BTcgVnshDhf=s0",
+      "link": "http://www.rijksmuseum.nl/en/collection/BK-NM-1315",
+      "title": "Stadtholder’s chair, Gerrit Hutte, 1747",
+      "place": [
+        "The Hague",
+        "The Hague"
+      ],
+      "maker": "Gerrit Hutte"
+    },
+    {
+      "id": "99d1",
+      "web": "https://lh3.ggpht.com/OIaBDlLOhgpAQHGdfYfIh0ygXRqgBNR-tW7se4OTwOtD6dsr6xLAmp8u_pfsqJ-0EqB_wbCF_0mvCl979lWxfFIyFQQ=s0",
+      "link": "http://www.rijksmuseum.nl/en/collection/BK-NM-1010",
+      "title": "Dolls’ house of Petronella Oortman, anonymous, c. 1686 - c. 1710",
+      "place": [
+        "Amsterdam"
+      ],
+      "maker": "anonymous"
+    }
+  ]
+}

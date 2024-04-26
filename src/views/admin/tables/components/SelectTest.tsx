@@ -16,6 +16,7 @@ import useRijksPagination from "./RijksPagination";
 
 export default function SelectTypes({setTypeBoolean, setPg, setCount, setData}:TypeSelection) {
   const [type, setType] = useState(``)
+  // const [isInitialRender, setIsInitialRender] = useState(true);
   const {data:rijksApiType, isFetching } = useGetRijksAPIByTypeQuery(type)
   const objectByType = rijksApiType?.facets?.filter((el: { name: string; }) => el.name ==="type")  
   
@@ -34,9 +35,13 @@ export default function SelectTypes({setTypeBoolean, setPg, setCount, setData}:T
   // console.log(type, rijksApiType)
   
   useEffect(()=>{  
-    setTypeBoolean(type) 
-    setCount(count)
-    setData(dataSearch)      
+    // setIsInitialRender(false);
+    // if (isInitialRender) {
+      setTypeBoolean(type) 
+      setCount(count)
+      setData(dataSearch)     
+      
+    // }
   },[count, dataSearch, setCount, setData, setTypeBoolean, type])  
 
   if(isFetching)return <Loader/>
@@ -55,7 +60,7 @@ export default function SelectTypes({setTypeBoolean, setPg, setCount, setData}:T
           <MenuItem value="" >
             <em>None</em>
           </MenuItem>
-          {objectByType?.[0]?.facets?.map(({key}:{key:string}) => (
+             {objectByType?.[0]?.facets?.map(({key}:{key:string}) => (
              <MenuItem           
              key={key}
              value={key}           
